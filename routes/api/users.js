@@ -19,7 +19,7 @@ router.post(
     check('password', 'Please enter a password with 8 or more characters')
       .isLength({ min: 8 })
       .matches(/\d/)
-      .withMessage('must contain a number'),
+      .withMessage('must contain a number')
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -43,14 +43,14 @@ router.post(
       const avatar = gravatar.url(email, {
         s: '200',
         r: 'pg',
-        d: 'mm',
+        d: 'mm'
       });
 
       user = new User({
         name,
         email,
         avatar,
-        password,
+        password
       });
 
       // encrypt password
@@ -63,8 +63,8 @@ router.post(
       // return jsonwebtoken
       const payload = {
         user: {
-          id: user.id,
-        },
+          id: user.id
+        }
       };
 
       jwt.sign(
