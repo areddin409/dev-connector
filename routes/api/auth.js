@@ -9,8 +9,8 @@ const auth = require('../../middleware/auth');
 
 const User = require('../../models/user');
 
-// @route     GET api/auth
-// @desc      Test Route
+//? @route     GET api/auth
+//! @desc      get user
 // @access    Public
 router.get('/', auth, async (req, res) => {
   try {
@@ -22,14 +22,14 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// @route     POST api/auth
-// @desc      Authenticate user & get token
+//? @route     POST api/auth
+// !@desc      Authenticate user & get token
 // @access    Public
 router.post(
   '/',
   [
     check('email', 'Please enter a valid email address').isEmail(),
-    check('password', 'Password is required').exists(),
+    check('password', 'Password is required').exists()
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -58,14 +58,14 @@ router.post(
 
       const payload = {
         user: {
-          id: user.id,
-        },
+          id: user.id
+        }
       };
 
       jwt.sign(
         payload,
         config.get('jwtSecret'),
-        { expiresIn: 360000 }, //TODO change back to 3600(1hr) before production
+        { expiresIn: 360000 }, //TODO change(3600=1hr) Super long for testing
         (error, token) => {
           if (error) throw error;
           res.json({ token });

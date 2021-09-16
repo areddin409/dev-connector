@@ -8,8 +8,8 @@ const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
 const User = require('../../models/user');
 
-// @route     POST api/posts
-// @desc      Create a Post
+//? @route     POST api/posts
+//! @desc      Create a Post
 // @access    Private
 router.post(
   '/',
@@ -40,8 +40,8 @@ router.post(
   }
 );
 
-// @route     GET api/posts
-// @desc      Get all posts
+//?@route     GET api/posts
+//! @desc      Get all posts
 // @access    Private
 router.get('/', auth, async (req, res) => {
   try {
@@ -54,8 +54,8 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// @route     GET api/posts/:id
-// @desc      Get post by id
+//?@route     GET api/posts/:id
+//! @desc      Get post by id
 // @access    Private
 router.get('/:id', auth, async (req, res) => {
   try {
@@ -75,8 +75,8 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
-// @route     Delete api/posts/:id
-// @desc      Delete post
+//?@route     Delete api/posts/:id
+//! @desc      Delete post
 // @access    Private
 router.delete('/:id', auth, async (req, res) => {
   try {
@@ -103,8 +103,8 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
-// @route     PUT api/posts/like/:id
-// @desc      Like a post
+//?@route     PUT api/posts/like/:id
+//! @desc      Like a post
 // @access    Private
 router.put('/like/:id', auth, async (req, res) => {
   try {
@@ -131,8 +131,8 @@ router.put('/like/:id', auth, async (req, res) => {
   }
 });
 
-// @route     PUT api/posts/unlike/:id
-// @desc      Remove like on a post
+//?@route     PUT api/posts/unlike/:id
+//! @desc      Remove like on a post
 // @access    Private
 router.put('/unlike/:id', auth, async (req, res) => {
   try {
@@ -164,8 +164,8 @@ router.put('/unlike/:id', auth, async (req, res) => {
   }
 });
 
-// @route     POST api/posts/comment/:id`
-// @desc      Comment on a post
+//?@route     POST api/posts/comment/:id`
+//! @desc      Comment on a post
 // @access    Private
 router.post(
   '/comment/:id',
@@ -199,8 +199,8 @@ router.post(
   }
 );
 
-// @route     Delete api/posts/comment/:id/:comment_id`
-// @desc      Delete comment on a post
+//? @route     Delete api/posts/comment/:id/:comment_id`
+//! @desc      Delete comment on a post
 // @access    Private
 router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
   try {

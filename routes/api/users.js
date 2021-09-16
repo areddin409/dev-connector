@@ -8,8 +8,8 @@ const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/user');
 
-// @route     POST api/users
-// @desc      Register user
+//? @route     POST api/users
+//! @desc      Register user
 // @access    Public
 router.post(
   '/',
@@ -19,7 +19,7 @@ router.post(
     check('password', 'Please enter a password with 8 or more characters')
       .isLength({ min: 8 })
       .matches(/\d/)
-      .withMessage('must contain a number')
+      .withMessage('***must contain a number***')
   ],
   async (req, res) => {
     const errors = validationResult(req);
