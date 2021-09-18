@@ -1,13 +1,20 @@
 import React, { Fragment, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Alert from './components/layout/Alert';
+import Dashboard from './components/dashboard/Dashboard';
+import CreateProfile from './components/profile-forms/CreateProfile';
 
 //Redux
-import { Provider } from 'react-redux';
+import { useSelector } from 'react-redux';
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
@@ -19,26 +26,37 @@ if (localStorage.token) {
 }
 
 const App = () => {
+  const isAuth = useSelector(({ auth }) => auth.isAuthenticated);
+
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
 
   return (
-    <Provider store={store}>
-      <Router>
-        <Fragment>
-          <Navbar />
-          <Route exact path='/' component={Landing} />
-          <section className='container'>
-            <Alert />
-            <Switch>
-              <Route exact path='/register' component={Register} />
-              <Route exact path='/login' component={Login} />
-            </Switch>
-          </section>
-        </Fragment>
-      </Router>
-    </Provider>
+    <Router>
+      <Fragment>
+        <Navbar />
+        <Route exact path='/' component={Landing} />
+        <section className='container'>
+          <Alert />
+          <Switch>
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/login' component={Login} />
+            //Protected Route
+            <Route
+              path='/dashboard'
+              render={() => (isAuth ? <Dashboard /> : <Redirect to='/login' />)}
+            />
+            <Route
+              path='/create-profile'
+              render={() =>
+                isAuth ? <CreateProfile /> : <Redirect to='/login' />
+              }
+            />
+          </Switch>
+        </section>
+      </Fragment>
+    </Router>
   );
 };
 
