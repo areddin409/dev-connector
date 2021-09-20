@@ -13,6 +13,8 @@ import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile-forms/CreateProfile';
 import EditProfile from './components/profile-forms/EditProfile';
+import AddExperience from './components/profile-forms/AddExperience';
+import AddEducation from './components/profile-forms/AddEducation';
 
 //Redux
 import { useSelector } from 'react-redux';
@@ -58,6 +60,18 @@ const App = () => {
               path='/edit-profile'
               render={() =>
                 isAuth ? <EditProfile /> : <Redirect to='/login' />
+              }
+            />
+            <Route
+              path='/add-experience'
+              render={() =>
+                isAuth ? <AddExperience /> : <Redirect to='/login' />
+              }
+            />
+            <Route
+              path='/add-education'
+              render={() =>
+                isAuth ? <AddEducation /> : <Redirect to='/login' />
               }
             />
           </Switch>

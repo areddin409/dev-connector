@@ -6,6 +6,7 @@ const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
 const Profile = require('../../models/Profile');
+const Post = require('../../models/Post');
 const User = require('../../models/user');
 
 //? @route     GET api/profile/me
@@ -136,11 +137,11 @@ router.get('/user/:user_id', async (req, res) => {
 
     res.json(profile);
   } catch (error) {
-    console.error(error.message);
-    if (error.kind === 'ObjectId') {
-      return res.status(400).json({ msg: 'Profile not found ' });
+    console.log(`Error while perticular user profile :- ${error.message}`);
+    if (error.name === 'CastError') {
+      return res.status(400).json({ msg: 'Profile not found' });
     }
-    res.status(500).send('Server error');
+    res.status(500).send('Server Error');
   }
 });
 
@@ -149,7 +150,8 @@ router.get('/user/:user_id', async (req, res) => {
 // @access    Private
 router.delete('/', auth, async (req, res) => {
   try {
-    //TODO remove users posts
+    //remove users posts
+    await Post.deleteMany({ user: req.user.id });
 
     //Remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
