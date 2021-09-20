@@ -12,6 +12,7 @@ import Login from './components/auth/Login';
 import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile-forms/CreateProfile';
+import EditProfile from './components/profile-forms/EditProfile';
 
 //Redux
 import { useSelector } from 'react-redux';
@@ -51,6 +52,12 @@ const App = () => {
               path='/create-profile'
               render={() =>
                 isAuth ? <CreateProfile /> : <Redirect to='/login' />
+              }
+            />
+            <Route
+              path='/edit-profile'
+              render={() =>
+                isAuth ? <EditProfile /> : <Redirect to='/login' />
               }
             />
           </Switch>
