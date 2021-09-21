@@ -15,10 +15,17 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </Link>
       </li>
       <li>
-        <a onClick={logout} href='#!'>
+        <i className='fas fa-users'></i>{' '}
+        <Link to='/profiles'>
+          {' '}
+          <span className='hide-sm'>Developers</span>
+        </Link>
+      </li>
+      <li>
+        <Link onClick={logout} to='#!'>
           <i className='fas fa-sign-out-alt'></i>{' '}
           <span className='hide-sm'>Logout</span>
-        </a>
+        </Link>
       </li>
     </ul>
   );
@@ -26,7 +33,11 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <a href='#!'>Developers</a>
+        <i className='fas fa-users'></i>{' '}
+        <Link to='/profiles'>
+          {' '}
+          <span className='hide-sm'>Developers</span>
+        </Link>
       </li>
       <li>
         <Link to='/register'>Register</Link>
