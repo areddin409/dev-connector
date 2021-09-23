@@ -8,10 +8,10 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <i className='fas fa-stream'></i>{' '}
-        <Link to='/dashboard'>
+        <i className='fas fa-mail-bulk'></i>{' '}
+        <Link to='/posts'>
           {' '}
-          <span className='hide-sm'>Dashboard</span>
+          <span className='hide-sm'>Posts</span>
         </Link>
       </li>
       <li>
@@ -19,6 +19,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Link to='/profiles'>
           {' '}
           <span className='hide-sm'>Developers</span>
+        </Link>
+      </li>
+      <li>
+        <i className='fas fa-stream'></i>{' '}
+        <Link to='/dashboard'>
+          {' '}
+          <span className='hide-sm'>Dashboard</span>
         </Link>
       </li>
       <li>
