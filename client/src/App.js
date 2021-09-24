@@ -18,6 +18,7 @@ import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 
 //Redux
 import { useSelector } from 'react-redux';
@@ -45,43 +46,54 @@ const App = () => {
         <Route exact path='/' component={Landing} />
         <section className='container'>
           <Alert />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/profiles' component={Profiles} />
+          <Route exact path='/profile/:id' component={Profile} />
           <Switch>
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/profiles' component={Profiles} />
-            <Route exact path='/profile/:id' component={Profile} />
             //Protected Routes
             <Route
+              exact
               path='/dashboard'
               render={() => (isAuth ? <Dashboard /> : <Redirect to='/login' />)}
             />
             <Route
+              exact
               path='/create-profile'
               render={() =>
                 isAuth ? <CreateProfile /> : <Redirect to='/login' />
               }
             />
             <Route
+              exact
               path='/edit-profile'
               render={() =>
                 isAuth ? <EditProfile /> : <Redirect to='/login' />
               }
             />
             <Route
+              exact
               path='/add-experience'
               render={() =>
                 isAuth ? <AddExperience /> : <Redirect to='/login' />
               }
             />
             <Route
+              exact
               path='/add-education'
               render={() =>
                 isAuth ? <AddEducation /> : <Redirect to='/login' />
               }
             />
             <Route
+              exact
               path='/posts'
               render={() => (isAuth ? <Posts /> : <Redirect to='/login' />)}
+            />
+            <Route
+              exact
+              path='/posts/:id'
+              render={() => (isAuth ? <Post /> : <Redirect to='/login' />)}
             />
           </Switch>
         </section>
